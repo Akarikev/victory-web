@@ -13,6 +13,8 @@ import {
   Twitter,
 } from "lucide-react";
 
+import { FaXTwitter } from "react-icons/fa6";
+
 const fat_face = DM_Serif_Display({
   weight: "400",
   subsets: ["latin"],
@@ -106,8 +108,7 @@ export default function Home() {
               href="https://x.com/VKwashigah"
               className="text-sm  inline-flex gap-2 bg-blue-400/10 p-1 items-center rounded-md"
             >
-              <Twitter className="w-4 h-4 text-blue-600" />
-              twitter
+              <FaXTwitter className="w-4 h-4 " />X
             </Link>
             <Link
               href="https://www.instagram.com/victoryahiaku/"
