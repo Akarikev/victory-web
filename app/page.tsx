@@ -44,7 +44,7 @@ export default function Home() {
             )}
           >
             VICTORY{" "}
-            <span className="underline md:underline-offset-4 decoration-wavy decoration-blue-600 italic">
+            <span className="underline md:underline-offset-4 decoration-wavy decoration-blue-600 ">
               KWASHIGAH
             </span>{" "}
             AHIAKU
@@ -103,14 +103,14 @@ export default function Home() {
               facebook
             </Link>
             <Link
-              href="mailto:victorykwashigahahiaku@gmail.com"
+              href="https://x.com/VKwashigah"
               className="text-sm  inline-flex gap-2 bg-blue-400/10 p-1 items-center rounded-md"
             >
               <Twitter className="w-4 h-4 text-blue-600" />
               twitter
             </Link>
             <Link
-              href="mailto:victorykwashigahahiaku@gmail.com"
+              href="https://www.instagram.com/victoryahiaku/"
               className="text-sm  inline-flex gap-2 bg-blue-400/10 p-1 items-center rounded-md"
             >
               <Instagram className="w-4 h-4 text-pink-600" />
