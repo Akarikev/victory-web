@@ -35,7 +35,7 @@ async function BlogsPage() {
                 </Link>
 
                 <p className="text-xs bg-blue-500 rounded-md px-0.5 text-white">
-                  {new Date(blog.created_at).toDateString()}
+                  {new Date(blog.created_at).toLocaleDateString()}
                 </p>
               </div>
             );
