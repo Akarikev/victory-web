@@ -23,8 +23,6 @@ function Loading() {
           </div>
 
           <p className=" mt-4 h-20 bg-gray-400/10 animate-pulse"></p>
-          {/* 
-        {JSON.stringify(blogs, null, 2)} */}
         </div>
       </div>
     </div>
