@@ -15,6 +15,7 @@ async function Page({
   //   console.log(params.id);
 
   const { data: blogs } = await ReadBlogsContent(params.id);
+  console.log(blogs.blog_content);
   return (
     <div className="flex flex-col min-h-screen ">
       <div>
@@ -53,7 +54,7 @@ async function Page({
           />
         </div>
 
-        <p className=" mt-4">{blogs.blog_content.content!}</p>
+        <p className=" mt-4">{blogs?.blog_content?.content!!}</p>
         {/* 
         {JSON.stringify(blogs, null, 2)} */}
       </div>
