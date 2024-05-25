@@ -61,7 +61,11 @@ function BlogDetailsPage({ data }: { data: BlogD }) {
         </div>
 
         <div className="mt-4">
-          <Markdown>{data?.blog_content!.content!}</Markdown>
+          {data?.blog_content?.content ? (
+            <Markdown>{data.blog_content.content}</Markdown>
+          ) : (
+            <p>No content available</p>
+          )}
         </div>
       </div>
     </div>
