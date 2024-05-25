@@ -49,7 +49,7 @@ function BlogDetailsPage({ blogs }: any) {
         </div>
 
         <div className=" mt-4">
-          <Markdown>{blogs?.blog_content.content!}</Markdown>
+          <Markdown>{blogs?.blog_content?.content!}</Markdown>
         </div>
 
         {/* 
