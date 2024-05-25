@@ -7,11 +7,23 @@ import Link from "next/link";
 import React from "react";
 import Markdown from "react-markdown";
 
-type BlogD = BlogDetails;
-function BlogDetailsPage({ blogs }: any) {
-  console.log(blogs.blog_content.content);
+type BlogD = {
+  created_at: string;
+  id: string;
+  image_url: string;
+  is_premium: boolean;
+  is_published: boolean;
+  title: string;
+  blog_content: {
+    blog_id: string;
+    content: string;
+    created_at: string;
+  };
+};
+
+function BlogDetailsPage({ data }: { data: BlogD }) {
   return (
-    <div className="flex flex-col min-h-screen ">
+    <div className="flex flex-col min-h-screen">
       <div>
         <Link
           href="/blogs"
@@ -23,37 +35,34 @@ function BlogDetailsPage({ blogs }: any) {
       </div>
 
       <div className="mt-6">
-        <h1 className="text-xl font-extrabold md:text-2xl lg:text-3xl ">
-          {blogs?.title}
+        <h1 className="text-xl font-extrabold md:text-2xl lg:text-3xl">
+          {data?.title}
         </h1>
 
         <small className="text-blue-600 font-bold">
-          {new Date(blogs?.created_at).toDateString()}
+          {new Date(data?.created_at).toDateString()}
         </small>
 
-        <small className="ml-3  underline-offset-4 font-semibold bg-blue-600 px-1 py-1 rounded-md text-gray-200">
-          Author : Victory Ahiaku Kwashigah
+        <small className="ml-3 underline-offset-4 font-semibold bg-blue-600 px-1 py-1 rounded-md text-gray-200">
+          Author: Victory Ahiaku Kwashigah
         </small>
 
         <div className="mt-6">
           <h1 className="font-bold underline-offset-2 underline">
-            {blogs?.title}
+            {data?.title}
           </h1>
           <Image
             width={400}
             height={300}
             alt="blog_image"
-            src={blogs?.image_url}
+            src={data?.image_url!}
             className="rounded-md mt-4 object-contain object-center"
           />
         </div>
 
-        <div className=" mt-4">
-          <Markdown>{blogs?.blog_content?.content!!!!!!}</Markdown>
+        <div className="mt-4">
+          <Markdown>{data?.blog_content?.content!}</Markdown>
         </div>
-
-        {/* 
-    {JSON.stringify(blogs, null, 2)} */}
       </div>
     </div>
   );
