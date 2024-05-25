@@ -54,7 +54,7 @@ async function Page({
           />
         </div>
 
-        <p className=" mt-4">{blogs?.blog_content?.content!!}</p>
+        <p className=" mt-4">{blogs?.blog_content!.content!!}</p>
         {/* 
         {JSON.stringify(blogs, null, 2)} */}
       </div>

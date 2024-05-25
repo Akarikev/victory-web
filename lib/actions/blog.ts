@@ -13,12 +13,15 @@ export async function ReadBlogs() {
     });
 }
 
-
 export async function ReadBlogsContent(blogId: string) {
-    const server = createClient();
-    return server
-      .from("blogs")
-      .select("*, blog_content(*)")
-      .eq("id", blogId)
-      .single();
+  const server = createClient();
+  const blog = await server
+    .from("blogs")
+    .select("*, blog_content(*)")
+    .eq("id", blogId)
+    .single();
+  if (!blog) {
+    throw new Error(`Blog post with id ${blogId} not found`);
   }
+  return blog;
+}
