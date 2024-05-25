@@ -5,7 +5,7 @@ import { BookAIcon, HomeIcon, UserCheck } from "lucide-react";
 import { Abril_Fatface } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import React from "react";
 import { ModeToggle } from "./mood-toggler";
 
@@ -14,6 +14,7 @@ const fat_face = Abril_Fatface({
   subsets: ["latin"],
   style: "normal",
 });
+
 function Navbar() {
   const pathname = usePathname();
   const links = [
