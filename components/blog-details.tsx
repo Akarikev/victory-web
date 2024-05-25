@@ -5,9 +5,11 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Markdown from "react-markdown";
 
 type BlogD = BlogDetails;
 function BlogDetailsPage({ blogs }: any) {
+  console.log(blogs.blog_content.content);
   return (
     <div className="flex flex-col min-h-screen ">
       <div>
@@ -46,7 +48,10 @@ function BlogDetailsPage({ blogs }: any) {
           />
         </div>
 
-        <p className=" mt-4">{blogs?.blog_content?.content!!}</p>
+        <div className=" mt-4">
+          <Markdown>{blogs?.blog_content.content!}</Markdown>
+        </div>
+
         {/* 
     {JSON.stringify(blogs, null, 2)} */}
       </div>
