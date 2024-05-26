@@ -40,7 +40,7 @@ async function Page({
     return <div>No blog content found</div>; // Render an appropriate message if no data is returned
   }
 
-  console.log(data); // Log data to verify it's correct in production
+  console.log(data.blog_content.content); // Log data to verify it's correct in production
   return <BlogDetailsPage data={data} />;
 }
 

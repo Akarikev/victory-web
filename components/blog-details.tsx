@@ -22,6 +22,7 @@ type BlogD = {
 };
 
 function BlogDetailsPage({ data }: { data: BlogD }) {
+  console.log(data.blog_content);
   return (
     <div className="flex flex-col min-h-screen">
       <div>
@@ -61,8 +62,8 @@ function BlogDetailsPage({ data }: { data: BlogD }) {
         </div>
 
         <div className="mt-4">
-          {data?.blog_content?.content ? (
-            <Markdown>{data?.blog_content?.content!}</Markdown>
+          {data.blog_content.content ? (
+            <Markdown>{data.blog_content.content}</Markdown>
           ) : (
             <p>No content available</p>
           )}
