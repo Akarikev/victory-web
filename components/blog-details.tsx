@@ -1,5 +1,3 @@
-"use client";
-
 import { BlogDetails } from "@/lib/types/data";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
@@ -63,7 +61,7 @@ function BlogDetailsPage({ data }: { data: BlogD }) {
 
         <div className="mt-4">
           {data.blog_content.content ? (
-            <Markdown>{data.blog_content.content!}</Markdown>
+            <Markdown>{data.blog_content!.content!}</Markdown>
           ) : (
             <p>No content available</p>
           )}
