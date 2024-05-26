@@ -1,7 +1,7 @@
-import BlogDetailsPage from "@/components/blog-details";
+//import BlogDetailsPage from "@/components/blog-details";
 import { ReadBlogsContent } from "@/lib/actions/blog";
 import React from "react";
-import { PostgrestSingleResponse } from "@supabase/supabase-js"; // Adjust import based on your setup
+import { PostgrestSingleResponse } from "@supabase/supabase-js";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import { ArrowLeft } from "lucide-react";
@@ -34,17 +34,17 @@ async function Page({
 
   if (response.error) {
     console.error("Error fetching blog content:", response.error);
-    return <div>Error loading blog content</div>; // Render an error component or message
+    return <div>Error loading blog content</div>;
   }
 
   const data = response.data;
 
   if (!data) {
     console.error("No data returned");
-    return <div>No blog content found</div>; // Render an appropriate message if no data is returned
+    return <div>No blog content found</div>;
   }
 
-  console.log(data.blog_content.content); // Log data to verify it's correct in production
+  console.log(data.blog_content.content);
   return (
     <div className="flex flex-col min-h-screen">
       <div>
@@ -85,7 +85,7 @@ async function Page({
 
         <div className="mt-4">
           {data.blog_content.content ? (
-            <Markdown>{data.blog_content?.content!}</Markdown>
+            <p>{data?.blog_content?.content!}</p>
           ) : (
             <p>No content available</p>
           )}
