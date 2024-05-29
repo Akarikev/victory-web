@@ -1,5 +1,5 @@
 //import BlogDetailsPage from "@/components/blog-details";
-import { ReadBlogsContent } from "@/lib/actions/blog";
+import { ReadBlogs, ReadBlogsContent } from "@/lib/actions/blog";
 import React from "react";
 import { PostgrestSingleResponse } from "@supabase/supabase-js";
 import Image from "next/image";
@@ -29,10 +29,14 @@ export async function generateStaticParams({
     id: string;
   };
 }) {
-  const blogs = await fetch(
-    "https://admin.victoryahiaku.site/api/blog?id=" + params.id
-  ).then((res) => res.json());
-  return [blogs]; // Ensure this returns an array of params
+  // const blogs = await fetch(
+  //   "https://admin.victoryahiaku.site/api/blog?id=" + params.id
+  // ).then((res) => res.json());
+  // return [blogs]; // Ensure this returns an array of params
+
+  const { data: blogs } = await ReadBlogsContent(params.id);
+
+  return [blogs];
 }
 
 export async function generateMetadata({
@@ -42,20 +46,20 @@ export async function generateMetadata({
     id: string;
   };
 }) {
-  const { data: blogs } = (await fetch(
-    "https://admin.victoryahiaku.site/api/blog?id=" + params.id
-  ).then((res) => res.json())) as { data: BlogD };
+  const response: PostgrestSingleResponse<BlogD> = await ReadBlogsContent(
+    params.id
+  );
 
   return {
-    title: blogs?.title,
+    title: response.data?.title,
     authors: {
       name: "Victory Kwashigah Ahiaku",
     },
     openGraph: {
-      title: blogs?.title,
-      url: `https://www.victoryahiaku.site/blogs/${blogs?.id}`,
+      title: response.data?.title,
+      url: `https://www.victoryahiaku.site/blogs/${response.data?.id}`,
       siteName: "Victory Ahiaku's Personal Website",
-      images: blogs?.image_url,
+      images: response.data?.image_url,
       type: "website",
     },
 
@@ -63,7 +67,7 @@ export async function generateMetadata({
       "Victory Ahiaku",
       "blogging",
       "Ghanaian Bloggers",
-      `${blogs?.title}`,
+      `${response.data?.title}`,
     ],
   };
 }
