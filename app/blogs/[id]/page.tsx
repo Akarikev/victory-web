@@ -29,11 +29,9 @@ export async function generateStaticParams({
     id: string;
   };
 }) {
-  const response: PostgrestSingleResponse<BlogD> = await ReadBlogsContent(
-    params.id
-  );
+  const { data } = await ReadBlogsContent(params.id);
 
-  return response?.data;
+  return data;
 }
 
 export async function generateMetadata({
