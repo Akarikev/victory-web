@@ -56,7 +56,7 @@ export async function generateMetadata({
     openGraph: {
       title: blogs?.title,
       url: `https://www.victoryahiaku.site/blogs/${blogs?.id}`,
-      siteName: "Victory Ahiaku's Personal Website",
+      siteName: `${blogs.title} | Victory's blogs`,
       images: blogs?.image_url,
       type: "website",
     },
