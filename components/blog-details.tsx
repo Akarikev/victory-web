@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Markdown from "react-markdown";
+import MarkdownPreview from "./markdown/markdown-preview";
+import CopyButton from "./copy-button";
 
 type BlogD = {
   created_at: string;
@@ -20,7 +22,7 @@ type BlogD = {
 };
 
 function BlogDetailsPage({ data }: { data: BlogD }) {
-  console.log(data.blog_content);
+  const id = Math.floor(Math.random() * 100 + 1).toString();
   return (
     <div className="flex flex-col min-h-screen">
       <div>
@@ -60,8 +62,9 @@ function BlogDetailsPage({ data }: { data: BlogD }) {
         </div>
 
         <div className="mt-4">
-          {data.blog_content.content ? (
-            <Markdown>{data.blog_content!.content!}</Markdown>
+          {/* <CopyButton id={id} /> */}
+          {data?.blog_content?.content ? (
+            <MarkdownPreview content={data?.blog_content?.content} />
           ) : (
             <p>No content available</p>
           )}
