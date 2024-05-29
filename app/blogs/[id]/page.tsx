@@ -29,9 +29,10 @@ export async function generateStaticParams({
     id: string;
   };
 }) {
-  const { data } = await ReadBlogsContent(params.id);
-
-  return data;
+  const { data: blogs } = (await fetch(
+    "https://admin.victoryahiaku.site/api/blog?id=" + params.id
+  ).then((res) => res.json())) as { data: BlogD };
+  return blogs;
 }
 
 export async function generateMetadata({
@@ -41,20 +42,20 @@ export async function generateMetadata({
     id: string;
   };
 }) {
-  const response: PostgrestSingleResponse<BlogD> = await ReadBlogsContent(
-    params.id
-  );
+  const { data: blogs } = (await fetch(
+    "https://admin.victoryahiaku.site/api/blog?id=" + params.id
+  ).then((res) => res.json())) as { data: BlogD };
 
   return {
-    title: response.data?.title,
+    title: blogs?.title,
     authors: {
       name: "Victory Kwashigah Ahiaku",
     },
     openGraph: {
-      title: response.data?.title,
-      url: `https://www.victoryahiaku.site/blogs/${response.data?.id}`,
+      title: blogs?.title,
+      url: `https://www.victoryahiaku.site/blogs/${blogs?.id}`,
       siteName: "Victory Ahiaku's Personal Website",
-      images: response.data?.image_url,
+      images: blogs?.image_url,
       type: "website",
     },
 
@@ -62,7 +63,7 @@ export async function generateMetadata({
       "Victory Ahiaku",
       "blogging",
       "Ghanaian Bloggers",
-      `${response.data?.title}`,
+      `${blogs?.title}`,
     ],
   };
 }
