@@ -1,5 +1,5 @@
 //import BlogDetailsPage from "@/components/blog-details";
-import { ReadBlogs, ReadBlogsContent } from "@/lib/actions/blog";
+import { ReadBlogsContent } from "@/lib/actions/blog";
 import React from "react";
 import { PostgrestSingleResponse } from "@supabase/supabase-js";
 import Image from "next/image";
@@ -7,6 +7,8 @@ import Markdown from "react-markdown";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import BlogDetailsPage from "@/components/blog-details";
+
+export const dynamic = "force-dynamic";
 
 type BlogD = {
   created_at: string;
@@ -29,14 +31,10 @@ export async function generateStaticParams({
     id: string;
   };
 }) {
-  // const blogs = await fetch(
-  //   "https://admin.victoryahiaku.site/api/blog?id=" + params.id
-  // ).then((res) => res.json());
-  // return [blogs]; // Ensure this returns an array of params
-
-  const { data: blogs } = await ReadBlogsContent(params.id);
-
-  return [blogs];
+  const blogs = await fetch(
+    "https://admin.victoryahiaku.site/api/blog?id=" + params.id
+  ).then((res) => res.json());
+  return [blogs]; // Ensure this returns an array of params
 }
 
 export async function generateMetadata({
@@ -46,20 +44,20 @@ export async function generateMetadata({
     id: string;
   };
 }) {
-  const response: PostgrestSingleResponse<BlogD> = await ReadBlogsContent(
-    params.id
-  );
+  const { data: blogs } = (await fetch(
+    "https://admin.victoryahiaku.site/api/blog?id=" + params.id
+  ).then((res) => res.json())) as { data: BlogD };
 
   return {
-    title: response.data?.title,
+    title: blogs?.title,
     authors: {
       name: "Victory Kwashigah Ahiaku",
     },
     openGraph: {
-      title: response.data?.title,
-      url: `https://www.victoryahiaku.site/blogs/${response.data?.id}`,
+      title: blogs?.title,
+      url: `https://www.victoryahiaku.site/blogs/${blogs?.id}`,
       siteName: "Victory Ahiaku's Personal Website",
-      images: response.data?.image_url,
+      images: blogs?.image_url,
       type: "website",
     },
 
@@ -67,7 +65,7 @@ export async function generateMetadata({
       "Victory Ahiaku",
       "blogging",
       "Ghanaian Bloggers",
-      `${response.data?.title}`,
+      `${blogs?.title}`,
     ],
   };
 }
