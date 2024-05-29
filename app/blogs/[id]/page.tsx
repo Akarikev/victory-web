@@ -29,10 +29,10 @@ export async function generateStaticParams({
     id: string;
   };
 }) {
-  const { data: blogs } = (await fetch(
+  const { data: blogs } = await fetch(
     "https://admin.victoryahiaku.site/api/blog?id=" + params.id
-  ).then((res) => res.json())) as { data: BlogD };
-  return blogs!;
+  ).then((res) => res.json());
+  return blogs;
 }
 
 export async function generateMetadata({
