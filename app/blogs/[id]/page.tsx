@@ -33,7 +33,7 @@ export async function generateStaticParams({
     params.id
   );
 
-  return response.data;
+  return response?.data;
 }
 
 export async function generateMetadata({
