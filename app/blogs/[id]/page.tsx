@@ -22,6 +22,53 @@ type BlogD = {
   };
 };
 
+export async function generateStaticParams({
+  params,
+}: {
+  params: {
+    id: string;
+  };
+}) {
+  const response: PostgrestSingleResponse<BlogD> = await ReadBlogsContent(
+    params.id
+  );
+
+  return response.data;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: {
+    id: string;
+  };
+}) {
+  const response: PostgrestSingleResponse<BlogD> = await ReadBlogsContent(
+    params.id
+  );
+
+  return {
+    title: response.data?.title,
+    authors: {
+      name: "Victory Kwashigah Ahiaku",
+    },
+    openGraph: {
+      title: response.data?.title,
+      url: `https://www.victoryahiaku.site/blogs/${response.data?.id}`,
+      siteName: "Victory Ahiaku's Personal Website",
+      images: response.data?.image_url,
+      type: "website",
+    },
+
+    keywords: [
+      "Victory Ahiaku",
+      "blogging",
+      "Ghanaian Bloggers",
+      `${response.data?.title}`,
+    ],
+  };
+}
+
 async function Page({
   params,
 }: {

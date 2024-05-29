@@ -13,6 +13,18 @@ export async function ReadBlogs() {
     });
 }
 
+export async function ReadBlogsLatest() {
+  const server = createClient();
+  return server
+    .from("blogs")
+    .select("*")
+    .eq("is_published", true)
+    .order("created_at", {
+      ascending: true,
+    })
+    .limit(5); // Add this line to limit the result to 5 latest blogs
+}
+
 export async function ReadBlogsContent(blogId: string) {
   const server = createClient();
   const blog = await server

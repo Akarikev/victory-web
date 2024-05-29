@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { FaXTwitter } from "react-icons/fa6";
+import LatestBlogs from "@/components/latest-blogs";
 
 const fat_face = DM_Serif_Display({
   weight: "400",
@@ -127,13 +128,8 @@ export default function Home() {
           Latest Posts
         </h1>
 
-        <div className="bg-blue-400/10 w-full rounded-md md:w-fit p-4">
-          <p className="inline-flex gap-2 items-center">
-            <Loader className="animate-spin w-4 h-4" />
-            Coming soon...
-          </p>
-
-          <p className="text-sm italic">This is where i write my story</p>
+        <div className="">
+          <LatestBlogs />
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@ type BlogD = {
 };
 
 function BlogDetailsPage({ data }: { data: BlogD }) {
-  const id = Math.floor(Math.random() * 100 + 1).toString();
+  // const id = Math.floor(Math.random() * 100 + 1).toString();
   return (
     <div className="flex flex-col min-h-screen">
       <div>

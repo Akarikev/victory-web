@@ -29,7 +29,10 @@ async function BlogsPage() {
         <div className="divide-y">
           {blogs?.map((blog) => {
             return (
-              <div key={blog.id} className="flex flex-1    gap-4 items-center ">
+              <div
+                key={blog.id}
+                className="flex  justify-between  gap-4 items-center "
+              >
                 <Link href={"/blogs/" + blog.id} className=" ">
                   {blog.title}
                 </Link>
