@@ -24,7 +24,7 @@ type BlogD = {
 function BlogDetailsPage({ data }: { data: BlogD }) {
   // const id = Math.floor(Math.random() * 100 + 1).toString();
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col  px-2 min-h-screen md:px-40 lg:px-40 ">
       <div>
         <Link
           href="/blogs"
@@ -35,7 +35,7 @@ function BlogDetailsPage({ data }: { data: BlogD }) {
         </Link>
       </div>
 
-      <div className="mt-6">
+      <div className="mt-6 ">
         <h1 className="text-xl font-extrabold md:text-2xl lg:text-3xl">
           {data?.title}
         </h1>
