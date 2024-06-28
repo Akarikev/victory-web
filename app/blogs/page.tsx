@@ -31,7 +31,7 @@ async function BlogsPage() {
             return (
               <div
                 key={blog.id}
-                className="flex  justify-between  gap-4 items-center "
+                className="flex  justify-between  mb-2 gap-4 items-center "
               >
                 <Link href={"/blogs/" + blog.id} className=" ">
                   {blog.title}
