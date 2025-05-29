@@ -30,11 +30,11 @@ export const metadata: Metadata = {
     title: "Victory Ahiaku Kwashigah's Page ",
     description: "Welcome to Victory Ahiaku's Page",
     creator: "@elorm_elom",
-    images: ["https://www.victoryahiaku.site/ogimage.jpg"],
+    images: ["https://www.victoryahiaku.online/ogimage.jpg"],
   },
 
   openGraph: {
-    images: "https://www.victoryahiaku.site/ogimage.jpg",
+    images: "https://www.victoryahiaku.online/ogimage.jpg",
     title: "Victory Ahiaku Kwashigah's Page ",
     description: "Welcome to Victory Ahiaku's Page",
   },
