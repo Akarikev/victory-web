@@ -32,7 +32,7 @@ export async function generateStaticParams({
   };
 }) {
   const blogs = await fetch(
-    "https://admin.victoryahiaku.site/api/blog?id=" + params.id
+    "https://admin.victoryahiaku.online/api/blog?id=" + params.id
   ).then((res) => res.json());
   return [blogs]; // Ensure this returns an array of params
 }
@@ -45,7 +45,7 @@ export async function generateMetadata({
   };
 }) {
   const { data: blogs } = (await fetch(
-    "https://admin.victoryahiaku.site/api/blog?id=" + params.id
+    "https://admin.victoryahiaku.online/api/blog?id=" + params.id
   ).then((res) => res.json())) as { data: BlogD };
 
   return {
@@ -55,7 +55,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title: blogs?.title,
-      url: `https://www.victoryahiaku.site/blogs/${blogs?.id}`,
+      url: `https://www.victoryahiaku.online/blogs/${blogs?.id}`,
       siteName: `${blogs.title} | Victory's blogs`,
       images: blogs?.image_url,
       type: "website",
