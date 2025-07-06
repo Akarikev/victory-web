@@ -3,30 +3,30 @@
 import { createClient } from "@/utils/supabase/server";
 
 export async function ReadBlogs() {
-  const server = createClient();
+  const server = await createClient();
   return server
     .from("blogs")
     .select("*")
     .eq("is_published", true)
     .order("created_at", {
-      ascending: true,
+      ascending: false,
     });
 }
 
 export async function ReadBlogsLatest() {
-  const server = createClient();
+  const server = await createClient();
   return server
     .from("blogs")
     .select("*")
     .eq("is_published", true)
     .order("created_at", {
-      ascending: true,
+      ascending: false,
     })
-    .limit(5); // Add this line to limit the result to 5 latest blogs
+    .limit(5);
 }
 
 export async function ReadBlogsContent(blogId: string) {
-  const server = createClient();
+  const server = await createClient();
   const blog = await server
     .from("blogs")
     .select("*, blog_content(*)")

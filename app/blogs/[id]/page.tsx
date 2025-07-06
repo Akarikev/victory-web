@@ -27,25 +27,23 @@ type BlogD = {
 export async function generateStaticParams({
   params,
 }: {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const blogs = await fetch(
-    "https://admin.victoryahiaku.online/api/blog?id=" + params.id
+    "https://admin.victoryahiaku.online/api/blog?id=" + id
   ).then((res) => res.json());
-  return [blogs]; // Ensure this returns an array of params
+  return [blogs];
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const { data: blogs } = (await fetch(
-    "https://admin.victoryahiaku.online/api/blog?id=" + params.id
+    "https://admin.victoryahiaku.online/api/blog?id=" + id
   ).then((res) => res.json())) as { data: BlogD };
 
   return {
@@ -60,7 +58,6 @@ export async function generateMetadata({
       images: blogs?.image_url,
       type: "website",
     },
-
     keywords: [
       "Victory Ahiaku",
       "blogging",
@@ -70,16 +67,9 @@ export async function generateMetadata({
   };
 }
 
-async function Page({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) {
-  const response: PostgrestSingleResponse<BlogD> = await ReadBlogsContent(
-    params.id
-  );
+async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const response: PostgrestSingleResponse<BlogD> = await ReadBlogsContent(id);
 
   if (response.error) {
     console.error("Error fetching blog content:", response.error);

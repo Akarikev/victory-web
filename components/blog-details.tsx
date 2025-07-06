@@ -1,11 +1,8 @@
-import { BlogDetails } from "@/lib/types/data";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Markdown from "react-markdown";
 import MarkdownPreview from "./markdown/markdown-preview";
-import CopyButton from "./copy-button";
 
 type BlogD = {
   created_at: string;
@@ -22,52 +19,55 @@ type BlogD = {
 };
 
 function BlogDetailsPage({ data }: { data: BlogD }) {
-  // const id = Math.floor(Math.random() * 100 + 1).toString();
   return (
-    <div className="flex flex-col  px-2 min-h-screen md:px-40 lg:px-40 ">
-      <div>
-        <Link
-          href="/blogs"
-          className="bg-slate-400/10 inline-flex px-2 hover:opacity-75 rounded-md gap-2 items-center"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          back to blog lists
-        </Link>
-      </div>
-
-      <div className="mt-6 ">
-        <h1 className="text-xl font-extrabold md:text-2xl lg:text-3xl">
-          {data?.title}
-        </h1>
-
-        <small className="text-blue-600 font-bold">
-          {new Date(data?.created_at).toDateString()}
-        </small>
-
-        <small className="ml-3 underline-offset-4 font-semibold bg-blue-600 px-1 py-1 rounded-md text-gray-200">
-          Author: Victory Ahiaku Kwashigah
-        </small>
-
-        <div className="mt-6">
-          <h1 className="font-bold underline-offset-2 underline">
+    <div className="flex flex-col min-h-screen px-2 md:px-0 items-center bg-background text-foreground py-8">
+      <div className="w-full max-w-2xl flex flex-col gap-8">
+        <div>
+          <Link
+            href="/blogs"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm mb-4"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to blog list
+          </Link>
+        </div>
+        <div className="flex flex-col gap-4">
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">
             {data?.title}
           </h1>
-          <Image
-            width={400}
-            height={300}
-            alt="blog_image"
-            src={data?.image_url!}
-            className="rounded-md mt-4 object-contain object-center"
-          />
-        </div>
-
-        <div className="mt-4">
-          {/* <CopyButton id={id} /> */}
-          {data?.blog_content?.content ? (
-            <MarkdownPreview content={data?.blog_content?.content} />
-          ) : (
-            <p>No content available</p>
+          <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+            <span className="font-semibold">
+              {new Date(data?.created_at).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
+            <span className="hidden md:inline">&middot;</span>
+            <span className="bg-primary/80 text-primary-foreground rounded px-2 py-0.5 font-medium">
+              Author: Victory Ahiaku Kwashigah
+            </span>
+          </div>
+          {data?.image_url && (
+            <div className="w-full flex justify-center my-4">
+              <div className="relative w-full aspect-[16/9] bg-muted rounded-2xl overflow-hidden shadow-lg flex items-center justify-center">
+                <Image
+                  src={data.image_url}
+                  alt="blog_image"
+                  fill
+                  className="object-contain object-center rounded-2xl"
+                  priority
+                />
+              </div>
+            </div>
           )}
+          <div className="prose prose-base md:prose-lg max-w-none dark:prose-invert mt-4">
+            {data?.blog_content?.content ? (
+              <MarkdownPreview content={data?.blog_content?.content} />
+            ) : (
+              <p>No content available</p>
+            )}
+          </div>
         </div>
       </div>
     </div>

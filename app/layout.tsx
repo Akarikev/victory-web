@@ -47,13 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-      <script
-            async
-            src="https://0.observe.so/script.js"
-            data-app="cly5xka510p9oarwkfkdupten"
-          ></script>
-      </head>
+      <head></head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
